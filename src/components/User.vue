@@ -62,7 +62,7 @@
 
 <script>
 import db from '../db/FirebaseDb'
-import toaster from 'toaster'
+import toastr from 'toastr'
 
 let usersRef = db.ref('users')
 
@@ -86,12 +86,12 @@ export default {
     addUser: function() {
       usersRef.push(this.newUser)
       this.newUser.firstname = this.newUser.lastname = this.newUser.age = this.newUser.email = ''
-      toaster.success("User Added")
+      toastr.success("User Added")
     },
     removeUser: function (user) {
       usersRef.child(user['.key']).remove().then(function() {
         console.log("User "+user.firstname+" removed from firebase")
-        toaster.success("User deleted")
+        toastr.success("User deleted")
       });
     }
   }
