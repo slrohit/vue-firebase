@@ -101,10 +101,17 @@ export default {
     }
   },
   methods: {
+    validate: function (user) {
+      return (user.firstname && user.firstname.length > 0 && user.email && user.email.length > 0 && user.age && user.age > 0 ) ? true: false
+    },
     addUser: function() {
-      usersRef.push(this.newUser)
-      this.newUser.firstname = this.newUser.lastname = this.newUser.age = this.newUser.email = ''
-      toastr.success("User Added")
+      if(this.validate(this.newUser)){
+        usersRef.push(this.newUser)
+        this.newUser.firstname = this.newUser.lastname = this.newUser.age = this.newUser.email = ''
+        toastr.success("User Added")
+      }else{
+        toastr.error("Invalid User info")
+      }
     },
     removeUser: function (user) {
       usersRef.child(user['.key']).remove().then(function() {
