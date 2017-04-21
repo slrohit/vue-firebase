@@ -45,7 +45,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in users">
+              <tr class="tbl-row" v-for="user in users" v-transition>
                 <td>{{user.firstname}}</td>
                 <td>{{user.lastname}}</td>
                 <td>{{user.age}}</td>
@@ -129,5 +129,17 @@ export default {
 .submit-div{
   text-align: center;
   margin-top: 10px;
+}
+.tbl-row{
+  transition: all .3s ease;
+   height: 30px;
+   padding: 10px;
+   background-color: #eee;
+   overflow: hidden;
+}
+.tbl-row.v-enter, .msg.v-leave {
+    height: 0;
+    padding: 0 10px;
+    opacity: 0;
 }
 </style>
